@@ -20,6 +20,17 @@ public class SearchTest {
         $("a[class=\"internal present\"][href=\"/selenide/selenide/wiki/SoftAssertions\"]").shouldHave(text("Soft assertions"));
         $("a[class=\"internal present\"][href=\"/selenide/selenide/wiki/SoftAssertions\"]").click();
         $("ul +div + div + ul ~div>h4[class=\"heading-element\"]").shouldHave(text("Using JUnit5 extend test class:"));
+        $("#wiki-body").shouldHave(text("@ExtendWith({SoftAssertsExtension.class})\n" +
+                "class Tests {\n" +
+                "  @Test\n" +
+                "  void test() {\n" +
+                "    Configuration.assertionMode = SOFT;\n" +
+                "    open(\"page.html\");\n" +
+                "\n" +
+                "    $(\"#first\").should(visible).click();\n" +
+                "    $(\"#second\").should(visible).click();\n" +
+                "  }\n" +
+                "}"));
     }
 
     @Test
@@ -31,5 +42,17 @@ public class SearchTest {
         $x("//a[contains(text(),'Soft assertions')]").shouldHave(text("Soft assertions"));
         $x("//a[contains(text(),'Soft assertions')]").click();
         $x("//h4[contains(text(),'Using JUnit5 extend test class:')]").shouldHave(text("Using JUnit5 extend test class:"));
+        $x("//h4[contains(text(),'Using JUnit5 extend test class:')]").shouldHave(text("Using JUnit5 extend test class:"));
+        $x("//*[@id=\"wiki-body\"]").shouldHave(text("@ExtendWith({SoftAssertsExtension.class})\n" +
+                "class Tests {\n" +
+                "  @Test\n" +
+                "  void test() {\n" +
+                "    Configuration.assertionMode = SOFT;\n" +
+                "    open(\"page.html\");\n" +
+                "\n" +
+                "    $(\"#first\").should(visible).click();\n" +
+                "    $(\"#second\").should(visible).click();\n" +
+                "  }\n" +
+                "}"));
     }
 }
